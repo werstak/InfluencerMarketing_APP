@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContainerAppComponent } from './layout/container-app/container-app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MaterialSharedModule } from './shared/material-shared.module';
 import { ErrorPageComponent } from './layout/error-page/error-page.component';
+import { ApiKeyInterceptor } from './core/api-key.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { ErrorPageComponent } from './layout/error-page/error-page.component';
     MaterialSharedModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ApiKeyInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
