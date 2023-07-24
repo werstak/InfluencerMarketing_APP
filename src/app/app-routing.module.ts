@@ -1,10 +1,33 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ErrorPageComponent } from './layout/error-page/error-page.component';
 
-const routes: Routes = [];
+const appRoutes: Routes = [
+  {
+    path: '',
+    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule)
+  },
+  // {
+  //   path: 'interests',
+  //   loadChildren: () => import('./modules/interests/interests.module').then(m => m.InterestsModule)
+  // },
+  {
+    path: 'not-found', component: ErrorPageComponent
+  },
+  {
+    path: '**', redirectTo: '/not-found', pathMatch: 'full'
+  }
+
+];
+
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

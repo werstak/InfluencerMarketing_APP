@@ -7,11 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContainerAppComponent } from './layout/container-app/container-app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialSharedModule } from './shared/material-shared.module';
+import { ErrorPageComponent } from './layout/error-page/error-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContainerAppComponent
+    ContainerAppComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
