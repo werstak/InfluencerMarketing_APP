@@ -26,7 +26,7 @@ export class UsersService {
 
   getAllUsers(q: any, limit: number, type: string, platform: string): Observable<any> {
     // const {q, limit, type, platform} = data;
-    return this.http.get(config.API_URL + `/dict/users/` + '?q=dev&limit=10&type=search&platform=instagram', {
+    return this.http.get(config.API_URL + `/dict/users/`, {
       params: new HttpParams({
         fromObject: {
           q,

@@ -34,10 +34,14 @@ export class UsersComponent implements OnInit {
     //
 
     const q = 'bey';
-    const limit = 20;
-    const type = 'search';
-    const platform = 'youtube';
-    // const platform = 'instagram';
+    const limit = 10;
+    const type = 'lookalike';
+    // const type = 'topic-tags';
+    // const type = 'search';
+
+    // const platform = 'youtube';
+    // const platform = 'tiktok';
+    const platform = 'instagram';
 
 
     // https://imai.co/api/dict/users/?q=dev&limit=10&type=search&platform=instagram
