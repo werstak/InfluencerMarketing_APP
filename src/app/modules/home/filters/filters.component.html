@@ -31,10 +31,29 @@
 
   <div class="field-search">
 
-    <mat-form-field appearance="outline">
+<!--    <mat-form-field appearance="outline">-->
+<!--      <mat-label>Search for a name</mat-label>-->
+<!--      <mat-icon matPrefix>search</mat-icon>-->
+<!--      <input type="search" matInput [formControl]="searchControl">-->
+<!--    </mat-form-field>-->
+
+
+    <mat-form-field class="example-full-width">
       <mat-label>Search for a name</mat-label>
       <mat-icon matPrefix>search</mat-icon>
-      <input type="search" matInput [formControl]="searchControl">
+
+      <input matInput
+             aria-label="State"
+             [matAutocomplete]="auto"
+             [formControl]="searchControl">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let user of users$ | async" [value]="user.username" (onSelectionChange)="getSelectedUser(user)">
+          <img alt="" class="example-option-img" [src]="user.picture" height="25">
+          <span>{{user.fullname}}</span> |
+          <small>followers: {{user.followers}}</small>
+
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
 
 
@@ -42,10 +61,13 @@
 <!--      <mat-label>State</mat-label>-->
 <!--      <input matInput-->
 <!--             aria-label="State"-->
-<!--             [matAutocomplete]="auto"-->
+<!--             [matAutocomplete]="auto1"-->
 <!--             [formControl]="stateCtrl">-->
-<!--      <mat-autocomplete #auto="matAutocomplete">-->
-<!--        <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">-->
+<!--      <mat-autocomplete #auto1="matAutocomplete">-->
+<!--        <mat-option-->
+<!--          *ngFor="let state of filteredStates | async"-->
+<!--          [value]="state.name"-->
+<!--          (onSelectionChange)="getSelectedCountry($event)">-->
 <!--          <img alt="" class="example-option-img" [src]="state.flag" height="25">-->
 <!--          <span>{{state.name}}</span> |-->
 <!--          <small>Population: {{state.population}}</small>-->
@@ -53,25 +75,6 @@
 <!--      </mat-autocomplete>-->
 <!--    </mat-form-field>-->
 
-
-
-    <mat-form-field class="example-full-width">
-      <mat-label>State</mat-label>
-      <input matInput
-             aria-label="State"
-             [matAutocomplete]="auto"
-             [formControl]="stateCtrl">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let state of users$ | async" [value]="state.username">
-<!--          <pre>{{state | json}}</pre>-->
-
-          <img alt="" class="example-option-img" [src]="state.picture" height="25">
-          <span>{{state.fullname}}</span> |
-          <small>followers: {{state.followers}}</small>
-
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
 
   </div>
 
@@ -86,5 +89,6 @@
 
 <button mat-button (click)="openDialog()">Open dialog</button>
 
-<pre>{{users | json}}</pre>
+<!--<pre>{{users | json}}</pre>-->
+<pre>{{postsSelectedUser | json}}</pre>
 

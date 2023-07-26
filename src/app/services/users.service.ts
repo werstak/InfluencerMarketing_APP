@@ -44,6 +44,40 @@ export class UsersService {
       );
   }
 
+  // https://imai.co/api/raw/ig/user/feed/?url=302489682
+
+  getFeedUser(url: number): Observable<any> {
+    return this.http.get(config.API_URL + `/raw/ig/user/feed/`, {
+      params: new HttpParams({
+        fromObject: {
+          url
+        }
+      })
+    })
+      .pipe(
+        catchError(error => {
+          console.log('Error: ', error.message);
+          return throwError(error);
+        })
+      );
+  }
+
+  getContactsUser(url: number): Observable<any> {
+    return this.http.get(config.API_URL + `/exports/contacts/`, {
+      params: new HttpParams({
+        fromObject: {
+          url
+        }
+      })
+    })
+      .pipe(
+        catchError(error => {
+          console.log('Error: ', error.message);
+          return throwError(error);
+        })
+      );
+  }
+
 
   // getAllUsers(): Observable<any> {
   //   return this.http.get(config.API_URL + `/dict/users/`)

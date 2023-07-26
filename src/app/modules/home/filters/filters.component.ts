@@ -78,7 +78,7 @@ export class FiltersComponent implements OnInit {
 
   selectedTypeOption = 'search';
   selectedPlatformOption = 'instagram';
-  selectedLimitOption = 10;
+  selectedLimitOption = 5;
 
   filterForm: FormGroup = new FormGroup({});
 
@@ -89,9 +89,17 @@ export class FiltersComponent implements OnInit {
   formValue!: FiltersInterface;
 
   subUsers: any;
+  subUser: any;
+  subUserContacts: any;
+
   users: any;
   // users: any;
   public users$ = new BehaviorSubject<UsersInterface[]>([]);
+  public user$ = new BehaviorSubject<any[]>([]);
+
+  selectedUser!: UsersInterface;
+  postsSelectedUser!: any;
+  contactsSelectedUser!: any;
 
 
   constructor(
@@ -165,31 +173,10 @@ export class FiltersComponent implements OnInit {
   // }
 
   fetchData() {
-
-    // const data = {
-    //   q: 'dav',
-    //   limit: 10,
-    //   type: 'search',
-    //   platform: 'instagram',
-    // }
-
-
     console.log(555, this.formValue);
-    // let test =  this.formValue;
 
     let {limit, type, platform} = this.formValue;
-    // const {limit, type, platform} = this.formValue;
-
     let q = this.searchValue;
-    // const limit = 20;
-    // const type = 'lookalike';
-    // // const type = 'topic-tags';
-    // // const type = 'search';
-    //
-    // // const platform = 'youtube';
-    // // const platform = 'tiktok';
-    // const platform = 'instagram';
-
 
     this.subUsers = this.usersService
       .getAllUsers(q, limit, type, platform)
@@ -199,6 +186,31 @@ export class FiltersComponent implements OnInit {
         console.log('resp', this.users.data)
       });
 
+  }
+
+  getSelectedUser(user: UsersInterface): void {
+    console.log('selectedUser', user)
+
+    this.selectedUser = user;
+
+    let url = this.selectedUser.user_id;
+
+    // this.subUser = this.usersService
+    //   .getFeedUser(url)
+    //   .subscribe(resp => {
+    //     this.postsSelectedUser = resp;
+    //     // this.users$.next(resp.data);
+    //     console.log('postsSelectedUser', this.postsSelectedUser)
+    //   });
+    //
+    //
+    this.subUserContacts = this.usersService
+      .getContactsUser(url)
+      .subscribe(resp => {
+        this.contactsSelectedUser = resp;
+        // this.users$.next(resp.data);
+        console.log('contactsSelectedUser', this.contactsSelectedUser)
+      });
   }
 
 
