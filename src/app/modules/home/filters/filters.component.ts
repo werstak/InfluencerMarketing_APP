@@ -8,11 +8,12 @@ import { LimitInterface } from '../../../interfaces/limit.Interface';
 import { PlatformsInterface } from '../../../interfaces/platforms.interface';
 import { TYPES_LIST } from '../../../consts/types-list';
 import { TypesInterface } from '../../../interfaces/types.Interface';
-import { debounceTime, map, Observable, startWith, Subject, Subscription, takeUntil } from 'rxjs';
+import { BehaviorSubject, debounceTime, map, Observable, startWith, Subject, Subscription, takeUntil } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { UsersDisplayModalComponent } from '../users-display-modal/users-display-modal.component';
 import { UsersService } from '../../../services/users.service';
 import { FiltersInterface } from '../../../interfaces/filters.Interface';
+import { UsersInterface } from '../../../interfaces/users.Interface';
 
 
 
@@ -34,7 +35,7 @@ export interface DialogData {
 })
 export class FiltersComponent implements OnInit {
   stateCtrl = new FormControl('');
-  filteredStates: Observable<State[]>;
+  filteredStates: any;
 
   states: State[] = [
     {
@@ -89,29 +90,29 @@ export class FiltersComponent implements OnInit {
 
   subUsers: any;
   users: any;
+  // users: any;
+  public users$ = new BehaviorSubject<UsersInterface[]>([]);
+
 
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
     public usersService: UsersService
   ) {
-    this.filteredStates = this.stateCtrl.valueChanges.pipe(
-      startWith(''),
-      map(state => (state ? this._filterStates(state) : this.states.slice())),
-    );
+    // this.filteredStates = this.stateCtrl.valueChanges.pipe(
+    //   startWith(''),
+    //   map(state => (state ? this._filterStates(state) : this.states.slice())),
+    // );
   }
 
 
-  private _filterStates(value: string): State[] {
-    const filterValue = value.toLowerCase();
 
-    return this.states.filter(state => state.name.toLowerCase().includes(filterValue));
-  }
 
 
   ngOnInit() {
     this.buildForm();
     this.getChangesSearchControl();
+    this.getChangesStateCtrl();
 
     // this.searchControl.valueChanges.subscribe(console.log)
   }
@@ -127,8 +128,21 @@ export class FiltersComponent implements OnInit {
 
   getFormValue(): void {
     // const params = this.filterForm.value;
-    this.formValue = this.filterForm.value;;
+    this.formValue = this.filterForm.value;
     console.log(465, this.formValue );
+  }
+
+  getChangesStateCtrl(): void {
+    this.filteredStates = this.stateCtrl.valueChanges.pipe(
+      startWith(''),
+      map(state => (state ? this._filterStates(state) : this.states.slice())),
+    );
+  }
+
+  private _filterStates(value: string): State[] {
+    const filterValue = value.toLowerCase();
+
+    return this.states.filter(state => state.name.toLowerCase().includes(filterValue));
   }
 
   private getChangesSearchControl(): void {
@@ -145,6 +159,10 @@ export class FiltersComponent implements OnInit {
     });
   }
 
+
+  // changeNotesVisibilityState(): void {
+  //   this.showNotes.next(state);
+  // }
 
   fetchData() {
 
@@ -177,7 +195,8 @@ export class FiltersComponent implements OnInit {
       .getAllUsers(q, limit, type, platform)
       .subscribe(resp => {
         this.users = resp;
-        console.log(this.users)
+        this.users$.next(resp.data);
+        console.log('resp', this.users.data)
       });
 
   }

@@ -38,6 +38,23 @@
     </mat-form-field>
 
 
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <mat-label>State</mat-label>-->
+<!--      <input matInput-->
+<!--             aria-label="State"-->
+<!--             [matAutocomplete]="auto"-->
+<!--             [formControl]="stateCtrl">-->
+<!--      <mat-autocomplete #auto="matAutocomplete">-->
+<!--        <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">-->
+<!--          <img alt="" class="example-option-img" [src]="state.flag" height="25">-->
+<!--          <span>{{state.name}}</span> |-->
+<!--          <small>Population: {{state.population}}</small>-->
+<!--        </mat-option>-->
+<!--      </mat-autocomplete>-->
+<!--    </mat-form-field>-->
+
+
+
     <mat-form-field class="example-full-width">
       <mat-label>State</mat-label>
       <input matInput
@@ -45,10 +62,13 @@
              [matAutocomplete]="auto"
              [formControl]="stateCtrl">
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-          <img alt="" class="example-option-img" [src]="state.flag" height="25">
-          <span>{{state.name}}</span> |
-          <small>Population: {{state.population}}</small>
+        <mat-option *ngFor="let state of users$ | async" [value]="state.username">
+<!--          <pre>{{state | json}}</pre>-->
+
+          <img alt="" class="example-option-img" [src]="state.picture" height="25">
+          <span>{{state.fullname}}</span> |
+          <small>followers: {{state.followers}}</small>
+
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
