@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FiltersComponent } from './filters/filters.component';
@@ -12,6 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { UsersDisplayModalComponent } from './users-display-modal/users-display-modal.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 const routes: Routes = [
@@ -30,16 +32,18 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    FormsModule,
+    ReactiveFormsModule,
     /**angular-material*/
     MatCardModule,
     MatFormFieldModule,
     MatSelectModule,
-    FormsModule,
-    ReactiveFormsModule,
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatAutocompleteModule,
+    MatSlideToggleModule,
   ]
 })
 export class HomeModule { }

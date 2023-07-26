@@ -30,11 +30,29 @@
   </div>
 
   <div class="field-search">
+
     <mat-form-field appearance="outline">
       <mat-label>Search for a name</mat-label>
       <mat-icon matPrefix>search</mat-icon>
       <input type="search" matInput [formControl]="searchControl">
     </mat-form-field>
+
+
+    <mat-form-field class="example-full-width">
+      <mat-label>State</mat-label>
+      <input matInput
+             aria-label="State"
+             [matAutocomplete]="auto"
+             [formControl]="stateCtrl">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+          <img alt="" class="example-option-img" [src]="state.flag" height="25">
+          <span>{{state.name}}</span> |
+          <small>Population: {{state.population}}</small>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
   </div>
 
   <div class="converter-form__btn">
