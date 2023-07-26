@@ -19,27 +19,68 @@
 .field-search {
   width: 100%;
   text-align: center;
+
+  &__container {
+    width: 100%;
+    max-width: 420px;
+  }
+
+
 }
 
+::ng-deep .mdc-list-item__primary-text {
+  width: 100%;
+}
 
+::ng-deep .mat-mdc-autocomplete-panel {
+  max-height: 445px !important;
+}
 
+.users {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  &__imgName {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 15px 15px 15px 0;
+  }
+
+  &__names {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__username {
+    color: #000000;
+    padding-bottom: 5px;
+  }
+
+  &__fullname {
+    font-weight: 400;
+    color: #8e9399;
+  }
+
+  &__followers {
+    font-weight: 400;
+    color: #8e9399;
+  }
+}
 
 .example-form {
   min-width: 150px;
   max-width: 500px;
   width: 100%;
-}
-
-.example-full-width {
-  width: 100%;
-}
-
-.example-option-img {
-  vertical-align: middle;
-  margin-right: 8px;
-}
-
-[dir='rtl'] .example-option-img {
-  margin-right: 0;
-  margin-left: 8px;
 }

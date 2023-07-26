@@ -38,7 +38,7 @@
 <!--    </mat-form-field>-->
 
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="field-search__container">
       <mat-label>Search for a name</mat-label>
       <mat-icon matPrefix>search</mat-icon>
 
@@ -48,47 +48,40 @@
              [formControl]="searchControl">
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let user of users$ | async" [value]="user.username" (onSelectionChange)="getSelectedUser(user)">
-          <img alt="" class="example-option-img" [src]="user.picture" height="25">
-          <span>{{user.fullname}}</span> |
-          <small>followers: {{user.followers}}</small>
+          <span class="users">
+
+            <span class="users__imgName">
+              <img alt="" class="users__img" [src]="user.picture">
+              <span class="users__names">
+                <span class="users__username">@{{user.username}}</span>
+                <span class="users__fullname">{{user.fullname}}</span>
+              </span>
+            </span>
+
+            <div class="users__followers">{{user.followers}}</div>
+          </span>
+
 
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
 
 
-<!--    <mat-form-field class="example-full-width">-->
-<!--      <mat-label>State</mat-label>-->
-<!--      <input matInput-->
-<!--             aria-label="State"-->
-<!--             [matAutocomplete]="auto1"-->
-<!--             [formControl]="stateCtrl">-->
-<!--      <mat-autocomplete #auto1="matAutocomplete">-->
-<!--        <mat-option-->
-<!--          *ngFor="let state of filteredStates | async"-->
-<!--          [value]="state.name"-->
-<!--          (onSelectionChange)="getSelectedCountry($event)">-->
-<!--          <img alt="" class="example-option-img" [src]="state.flag" height="25">-->
-<!--          <span>{{state.name}}</span> |-->
-<!--          <small>Population: {{state.population}}</small>-->
-<!--        </mat-option>-->
-<!--      </mat-autocomplete>-->
-<!--    </mat-form-field>-->
-
-
   </div>
 
-  <div class="converter-form__btn">
-    <button type="submit"
-            mat-raised-button color="primary"
-            (click)="getFormValue()">
-      getFormValue()
-    </button>
-  </div>
+<!--  <div class="converter-form__btn">-->
+<!--    <button type="submit"-->
+<!--            mat-raised-button color="primary"-->
+<!--            (click)="getFormValue()">-->
+<!--      getFormValue()-->
+<!--    </button>-->
+<!--  </div>-->
+
+
 </form>
 
 <button mat-button (click)="openDialog()">Open dialog</button>
 
 <!--<pre>{{users | json}}</pre>-->
-<pre>{{postsSelectedUser | json}}</pre>
+<!--<pre>{{postsSelectedUser | json}}</pre>-->
 

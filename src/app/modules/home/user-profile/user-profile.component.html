@@ -1,0 +1,49 @@
+<div class="profile">
+
+  <div class="profile__avatar">
+    <div class="profile__imgWrap">
+      <img alt="" class="profile__img" [src]="user.picture">
+    </div>
+  </div>
+
+  <div class="profile__description" *ngIf="user.user_id">
+    <div class="profile__username">{{user.username}}
+      <mat-icon class="profile__isVerified" *ngIf="user.is_verified == true" matPrefix>verified</mat-icon>
+    </div>
+
+    <div class="profile__counters">
+      <div class="profile__counter">{{user?.posts || 0}}
+        <span class="profile__counterDescription">posts</span>
+      </div>
+      <div class="profile__counter">{{user.followers}}
+        <span class="profile__counterDescription">followers</span>
+      </div>
+      <div class="profile__counter">{{user?.following || 0}}
+        <span class="profile__counterDescription">following</span>
+      </div>
+    </div>
+
+    <div class="profile__fullname">{{user.fullname}}</div>
+
+    <div class="profile__contact">Contact</div>
+  </div>
+
+</div>
+
+
+<div class="posts">
+  <div class="post" *ngFor="let post of posts.items">
+
+<!--    <div class="post__imgWrap">-->
+<!--      <img alt="" class="post__img" crossorigin="anonymous" [src]="post.display_url">-->
+<!--    </div>-->
+
+    <div>{{post.pk}} - pk</div>
+    <div>{{post.comment_count}} - comment_count</div>
+    <div>{{post.like_count}} - like_count</div>
+    <div>{{post.media_type}} - media_type</div>
+
+  </div>
+</div>
+
+<!--    <pre>{{post | json}}</pre>-->

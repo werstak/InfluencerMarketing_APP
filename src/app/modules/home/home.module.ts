@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
   declarations: [
     HomeComponent,
     FiltersComponent,
-    UsersDisplayModalComponent
+    UsersDisplayModalComponent,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,

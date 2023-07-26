@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
 import * as config from '../../../src/app-config';
+import { UsersInterface } from '../interfaces/users.Interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,10 @@ export class UsersService {
     private http: HttpClient,
   ) {
   }
+
+  public postsSelectedUser$ = new BehaviorSubject<any[]>([]);
+  public selectedUser$ = new BehaviorSubject<any>({});
+
 
 
   // https://imai.co/api/dict/users/?q=dev&limit=10&type=search&platform=instagram

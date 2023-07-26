@@ -95,9 +95,10 @@ export class FiltersComponent implements OnInit {
   users: any;
   // users: any;
   public users$ = new BehaviorSubject<UsersInterface[]>([]);
-  public user$ = new BehaviorSubject<any[]>([]);
+  // public user$ = new BehaviorSubject<any[]>([]);
 
   selectedUser!: UsersInterface;
+
   postsSelectedUser!: any;
   contactsSelectedUser!: any;
 
@@ -192,25 +193,30 @@ export class FiltersComponent implements OnInit {
     console.log('selectedUser', user)
 
     this.selectedUser = user;
+    this.usersService.selectedUser$.next(this.selectedUser);
+
+
 
     let url = this.selectedUser.user_id;
 
-    // this.subUser = this.usersService
-    //   .getFeedUser(url)
-    //   .subscribe(resp => {
-    //     this.postsSelectedUser = resp;
-    //     // this.users$.next(resp.data);
-    //     console.log('postsSelectedUser', this.postsSelectedUser)
-    //   });
-    //
-    //
-    this.subUserContacts = this.usersService
-      .getContactsUser(url)
+    this.subUser = this.usersService
+      .getFeedUser(url)
       .subscribe(resp => {
-        this.contactsSelectedUser = resp;
-        // this.users$.next(resp.data);
-        console.log('contactsSelectedUser', this.contactsSelectedUser)
+        this.postsSelectedUser = resp;
+        this.usersService.postsSelectedUser$.next(this.postsSelectedUser);
+        console.log('postsSelectedUser', this.postsSelectedUser)
       });
+
+
+
+    // this.subUserContacts = this.usersService
+    //   .getContactsUser(url)
+    //   .subscribe(resp => {
+    //     this.contactsSelectedUser = resp;
+    //     // this.users$.next(resp.data);
+    //     console.log('contactsSelectedUser', this.contactsSelectedUser)
+    //   });
+
   }
 
 
