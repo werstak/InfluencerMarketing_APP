@@ -3,6 +3,6 @@ export interface UsersInterface {
   username?: string;
   fullname?: string;
   picture?: string;
-  followers?: number;
+  followers?: any;
   is_verified?: boolean;
 }

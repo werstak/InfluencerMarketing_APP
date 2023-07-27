@@ -199,13 +199,13 @@ export class FiltersComponent implements OnInit {
 
     let url = this.selectedUser.user_id;
 
-    this.subUser = this.usersService
-      .getFeedUser(url)
-      .subscribe(resp => {
-        this.postsSelectedUser = resp;
-        this.usersService.postsSelectedUser$.next(this.postsSelectedUser);
-        console.log('postsSelectedUser', this.postsSelectedUser)
-      });
+    // this.subUser = this.usersService
+    //   .getFeedUser(url)
+    //   .subscribe(resp => {
+    //     this.postsSelectedUser = resp;
+    //     this.usersService.postsSelectedUser$.next(this.postsSelectedUser);
+    //     console.log('postsSelectedUser', this.postsSelectedUser)
+    //   });
 
 
 

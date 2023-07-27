@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MaterialSharedModule } from './shared/material-shared.module';
 import { ErrorPageComponent } from './layout/error-page/error-page.component';
 import { ApiKeyInterceptor } from './core/api-key.interceptor';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ApiKeyInterceptor } from './core/api-key.interceptor';
     ErrorPageComponent
   ],
   imports: [
+    PipesModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

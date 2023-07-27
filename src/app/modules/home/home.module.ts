@@ -15,6 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { PipesModule } from '../../pipes/pipes.module';
 
 
 const routes: Routes = [
@@ -46,6 +47,7 @@ const routes: Routes = [
     MatDialogModule,
     MatAutocompleteModule,
     MatSlideToggleModule,
+    PipesModule,
   ]
 })
 export class HomeModule { }

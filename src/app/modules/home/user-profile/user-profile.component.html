@@ -15,7 +15,7 @@
       <div class="profile__counter">{{user?.posts || 0}}
         <span class="profile__counterDescription">posts</span>
       </div>
-      <div class="profile__counter">{{user.followers}}
+      <div class="profile__counter">{{user.followers | shortNumber}}
         <span class="profile__counterDescription">followers</span>
       </div>
       <div class="profile__counter">{{user?.following || 0}}
@@ -25,23 +25,44 @@
 
     <div class="profile__fullname">{{user.fullname}}</div>
 
-    <div class="profile__contact">Contact</div>
+
+    <div class="profile__contact">
+      <p *ngFor="let contact of contacts">
+        <a [href]="contact.formatted_value">{{contact.formatted_value}}</a>
+      </p>
+
+    </div>
   </div>
 
 </div>
 
+<!--<a href=""></a>-->
 
 <div class="posts">
   <div class="post" *ngFor="let post of posts.items">
+    <mat-icon class="post__icon" matPrefix>{{post.media_type == 1 ? 'movie' : 'collections'}}</mat-icon>
 
-<!--    <div class="post__imgWrap">-->
-<!--      <img alt="" class="post__img" crossorigin="anonymous" [src]="post.display_url">-->
-<!--    </div>-->
+    <div class="post__iconsHover">
+      <div class="post__iconsData post__iconsData_mod">
+        <mat-icon matPrefix>favorite</mat-icon>
+        <div class="post__iconsContent">{{post.like_count | shortNumber}}</div>
+      </div>
 
-    <div>{{post.pk}} - pk</div>
-    <div>{{post.comment_count}} - comment_count</div>
-    <div>{{post.like_count}} - like_count</div>
-    <div>{{post.media_type}} - media_type</div>
+      <div class="post__iconsData">
+        <mat-icon matPrefix>mode_comment</mat-icon>
+        <div class="post__iconsContent">{{post.comment_count | shortNumber}}</div>
+      </div>
+    </div>
+
+    <div class="post__imgWrap">
+      <!--            <img alt="" class="post__img" crossorigin="anonymous" [src]="post.display_url">-->
+      <img class="post__img" src="assets/img/3333.jpg" alt="">
+    </div>
+
+    <!--    <div>{{post.pk}} - pk</div>-->
+    <!--    <div>{{post.comment_count}} - comment_count</div>-->
+    <!--    <div>{{post.like_count}} - like_count</div>-->
+    <!--    <div>{{post.media_type}} - media_type</div>-->
 
   </div>
 </div>
