@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
 import * as config from '../../../src/app-config';
-import { UsersInterface } from '../interfaces/users.Interface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,6 @@ import { UsersInterface } from '../interfaces/users.Interface';
 
 
 export class UsersService {
-
   constructor(
     private http: HttpClient,
   ) {
@@ -18,19 +16,10 @@ export class UsersService {
 
   public postsSelectedUser$ = new BehaviorSubject<any[]>([]);
   public selectedUser$ = new BehaviorSubject<any>({});
-
-
-
-  // https://imai.co/api/dict/users/?q=dev&limit=10&type=search&platform=instagram
-
-  // q: 'dav',
-  // limit: 10,
-  // type: 'search',
-  // platform: 'instagram',
+  public contactUser$ = new BehaviorSubject<any>({});
 
 
   getAllUsers(q: any, limit: number, type: string, platform: string): Observable<any> {
-    // const {q, limit, type, platform} = data;
     return this.http.get(config.API_URL + `/dict/users/`, {
       params: new HttpParams({
         fromObject: {
@@ -49,7 +38,6 @@ export class UsersService {
       );
   }
 
-  // https://imai.co/api/raw/ig/user/feed/?url=302489682
 
   getFeedUser(url: number): Observable<any> {
     return this.http.get(config.API_URL + `/raw/ig/user/feed/`, {
@@ -82,17 +70,6 @@ export class UsersService {
         })
       );
   }
-
-
-  // getAllUsers(): Observable<any> {
-  //   return this.http.get(config.API_URL + `/dict/users/`)
-  //     .pipe(
-  //       catchError(error => {
-  //         console.log('Error: ', error.message);
-  //         return throwError(error);
-  //       })
-  //     );
-  // }
 
 
 }

@@ -1,6 +1,7 @@
 <form class="filter-wrap" [formGroup]="filterForm">
 
   <div class="filters">
+
     <mat-form-field appearance="outline">
       <mat-label>Types</mat-label>
       <mat-select formControlName="type">
@@ -31,13 +32,6 @@
 
   <div class="field-search">
 
-<!--    <mat-form-field appearance="outline">-->
-<!--      <mat-label>Search for a name</mat-label>-->
-<!--      <mat-icon matPrefix>search</mat-icon>-->
-<!--      <input type="search" matInput [formControl]="searchControl">-->
-<!--    </mat-form-field>-->
-
-
     <mat-form-field class="field-search__container">
       <mat-label>Search for a name</mat-label>
       <mat-icon matPrefix>search</mat-icon>
@@ -47,9 +41,9 @@
              [matAutocomplete]="auto"
              [formControl]="searchControl">
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let user of users$ | async" [value]="user.username" (onSelectionChange)="getSelectedUser(user)">
+        <mat-option *ngFor="let user of users$ | async" [value]="user.username"
+                    (onSelectionChange)="getSelectedUser(user)">
           <span class="users">
-
             <span class="users__imgName">
               <img alt="" class="users__img" [src]="user.picture">
               <span class="users__names">
@@ -57,31 +51,12 @@
                 <span class="users__fullname">{{user.fullname}}</span>
               </span>
             </span>
-
             <div class="users__followers">{{user.followers | shortNumber}}</div>
           </span>
-
-
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
 
-
   </div>
 
-<!--  <div class="converter-form__btn">-->
-<!--    <button type="submit"-->
-<!--            mat-raised-button color="primary"-->
-<!--            (click)="getFormValue()">-->
-<!--      getFormValue()-->
-<!--    </button>-->
-<!--  </div>-->
-
-
 </form>
-
-<button mat-button (click)="openDialog()">Open dialog</button>
-
-<!--<pre>{{users | json}}</pre>-->
-<!--<pre>{{postsSelectedUser | json}}</pre>-->
-

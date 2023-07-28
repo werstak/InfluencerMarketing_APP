@@ -11,10 +11,6 @@ const appRoutes: Routes = [
     path: 'users',
     loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule)
   },
-  // {
-  //   path: 'interests',
-  //   loadChildren: () => import('./modules/interests/interests.module').then(m => m.InterestsModule)
-  // },
   {
     path: 'not-found', component: ErrorPageComponent
   },

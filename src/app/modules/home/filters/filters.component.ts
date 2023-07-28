@@ -10,22 +10,9 @@ import { TYPES_LIST } from '../../../consts/types-list';
 import { TypesInterface } from '../../../interfaces/types.Interface';
 import { BehaviorSubject, debounceTime, map, Observable, startWith, Subject, Subscription, takeUntil } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { UsersDisplayModalComponent } from '../users-display-modal/users-display-modal.component';
 import { UsersService } from '../../../services/users.service';
 import { FiltersInterface } from '../../../interfaces/filters.Interface';
 import { UsersInterface } from '../../../interfaces/users.Interface';
-
-
-
-export interface State {
-  flag: string;
-  name: string;
-  population: string;
-}
-
-export interface DialogData {
-  animal: 'panda' | 'unicorn' | 'lion';
-}
 
 
 @Component({
@@ -33,56 +20,25 @@ export interface DialogData {
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss']
 })
-export class FiltersComponent implements OnInit {
+export class FiltersComponent implements OnInit, OnDestroy {
   stateCtrl = new FormControl('');
   filteredStates: any;
 
-  states: State[] = [
-    {
-      name: 'Arkansas',
-      population: '2.978M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_Arkansas.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Arkansas.svg',
-    },
-    {
-      name: 'California',
-      population: '39.14M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_California.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_California.svg',
-    },
-    {
-      name: 'Florida',
-      population: '20.27M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_Florida.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Florida.svg',
-    },
-    {
-      name: 'Texas',
-      population: '27.47M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_Texas.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Texas.svg',
-    },
-  ];
+  private readonly unsubscribe$: Subject<void> = new Subject();
 
-  private componentDestroy$: Subject<null> = new Subject();
-
-
-  // colorControl = new FormControl('primary' as ThemePalette);
-  // types = ['lookalike', 'topic-tags', 'search'];
-  // limit = [10, 20, 50];
-  // platform = ['instagram', 'tiktok', 'youtube'];
 
   typeList = TYPES_LIST;
   platformsList = PLATFORM_LIST;
   limitList = LIMIT_LIST;
 
+  /**Init Filters*/
   selectedTypeOption = 'search';
   selectedPlatformOption = 'instagram';
   selectedLimitOption = 5;
 
   filterForm: FormGroup = new FormGroup({});
-
   searchControl: FormControl = new FormControl();
+
   // unsubFormFields: Subscription;
 
   searchValue = '';
@@ -93,7 +49,6 @@ export class FiltersComponent implements OnInit {
   subUserContacts: any;
 
   users: any;
-  // users: any;
   public users$ = new BehaviorSubject<UsersInterface[]>([]);
   // public user$ = new BehaviorSubject<any[]>([]);
 
@@ -108,22 +63,12 @@ export class FiltersComponent implements OnInit {
     public dialog: MatDialog,
     public usersService: UsersService
   ) {
-    // this.filteredStates = this.stateCtrl.valueChanges.pipe(
-    //   startWith(''),
-    //   map(state => (state ? this._filterStates(state) : this.states.slice())),
-    // );
   }
-
-
-
 
 
   ngOnInit() {
     this.buildForm();
     this.getChangesSearchControl();
-    this.getChangesStateCtrl();
-
-    // this.searchControl.valueChanges.subscribe(console.log)
   }
 
   private buildForm(): void {
@@ -134,48 +79,23 @@ export class FiltersComponent implements OnInit {
     });
   }
 
-
-  getFormValue(): void {
-    // const params = this.filterForm.value;
+  private getFormValue(): void {
     this.formValue = this.filterForm.value;
-    console.log(465, this.formValue );
-  }
-
-  getChangesStateCtrl(): void {
-    this.filteredStates = this.stateCtrl.valueChanges.pipe(
-      startWith(''),
-      map(state => (state ? this._filterStates(state) : this.states.slice())),
-    );
-  }
-
-  private _filterStates(value: string): State[] {
-    const filterValue = value.toLowerCase();
-
-    return this.states.filter(state => state.name.toLowerCase().includes(filterValue));
+    console.log('getFormValue()', this.formValue);
   }
 
   private getChangesSearchControl(): void {
-    // this.searchControl.valueChanges.subscribe(console.log);
-
     this.searchControl.valueChanges.pipe(
       debounceTime(500),
-      // takeUntil(this.componentDestroy$)
+      takeUntil(this.unsubscribe$)
     ).subscribe(val => {
       this.searchValue = val;
-      console.log(this.searchValue)
       this.getFormValue();
       this.fetchData();
     });
   }
 
-
-  // changeNotesVisibilityState(): void {
-  //   this.showNotes.next(state);
-  // }
-
-  fetchData() {
-    console.log(555, this.formValue);
-
+  private fetchData() {
     let {limit, type, platform} = this.formValue;
     let q = this.searchValue;
 
@@ -184,53 +104,37 @@ export class FiltersComponent implements OnInit {
       .subscribe(resp => {
         this.users = resp;
         this.users$.next(resp.data);
-        console.log('resp', this.users.data)
+        console.log('getAllUsers()', this.users.data)
       });
-
   }
 
   getSelectedUser(user: UsersInterface): void {
-    console.log('selectedUser', user)
-
     this.selectedUser = user;
     this.usersService.selectedUser$.next(this.selectedUser);
 
-
-
     let url = this.selectedUser.user_id;
 
-    // this.subUser = this.usersService
-    //   .getFeedUser(url)
-    //   .subscribe(resp => {
-    //     this.postsSelectedUser = resp;
-    //     this.usersService.postsSelectedUser$.next(this.postsSelectedUser);
-    //     console.log('postsSelectedUser', this.postsSelectedUser)
-    //   });
+    this.subUser = this.usersService
+      .getFeedUser(url)
+      .subscribe(resp => {
+        this.postsSelectedUser = resp;
+        this.usersService.postsSelectedUser$.next(this.postsSelectedUser);
+        // console.log('postsSelectedUser', this.postsSelectedUser)
+      });
 
 
-
-    // this.subUserContacts = this.usersService
-    //   .getContactsUser(url)
-    //   .subscribe(resp => {
-    //     this.contactsSelectedUser = resp;
-    //     // this.users$.next(resp.data);
-    //     console.log('contactsSelectedUser', this.contactsSelectedUser)
-    //   });
-
+    this.subUserContacts = this.usersService
+      .getContactsUser(url)
+      .subscribe(resp => {
+        this.contactsSelectedUser = resp;
+        this.usersService.contactUser$.next(this.contactsSelectedUser);
+        // console.log('contactsSelectedUser', this.contactsSelectedUser)
+      });
   }
 
-
-  openDialog() {
-    this.dialog.open(UsersDisplayModalComponent, {
-      data: {
-        animal: 'panda',
-      },
-    });
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
-
-  // OnDestroy
-  // ngOnDestroy(): void {
-  //   this.componentDestroy$.next();
-  // }
 
 }
