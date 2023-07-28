@@ -30,13 +30,11 @@
       <p *ngFor="let contact of contacts">
         <a [href]="contact.formatted_value">{{contact.formatted_value}}</a>
       </p>
-
     </div>
   </div>
 
 </div>
 
-<!--<a href=""></a>-->
 
 <div class="posts">
   <div class="post" *ngFor="let post of posts.items">
@@ -56,15 +54,7 @@
 
     <div class="post__imgWrap">
       <img alt="" class="post__img" crossorigin="anonymous" [src]="post.display_url">
-<!--      <img class="post__img" src="assets/img/3333.jpg" alt="">-->
     </div>
-
-        <div>{{post.pk}} - pk</div>
-    <!--    <div>{{post.comment_count}} - comment_count</div>-->
-    <!--    <div>{{post.like_count}} - like_count</div>-->
-    <!--    <div>{{post.media_type}} - media_type</div>-->
 
   </div>
 </div>
-
-<!--    <pre>{{post | json}}</pre>-->

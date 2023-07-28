@@ -10,7 +10,6 @@ export class UserController {
     ) {
     }
     @Get('dict/users')
-    // @Get('/raw/ig/user/feed/')
     users(
         @Query() params: FindUsersDto
     ) {

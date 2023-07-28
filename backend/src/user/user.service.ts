@@ -18,13 +18,4 @@ export class UserService {
                 map(res => res?.data)
             );
     }
-
-    // findUsers (params: FindUsersDto) {
-    //     return this.httpService.get('/raw/ig/user/feed/', {
-    //         params
-    //     })
-    //         .pipe(
-    //             map(res => res?.data)
-    //         );
-    // }
 }

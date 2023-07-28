@@ -3,10 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="a04730a9-78a3-4ba2-8b3a-f6701fa301ba" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/custom-http/custom-http.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/custom-http/custom-http.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/user/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/user/user.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/user/user.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/user/user.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/user/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/user/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/home/filters/filters.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/home/filters/filters.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/home/user-profile/user-profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/home/user-profile/user-profile.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/home/user-profile/user-profile.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/home/user-profile/user-profile.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/home/user-profile/user-profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/home/user-profile/user-profile.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +41,7 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="ts.external.directory.path" value="D:\DISK_F\PROJECTS-test+\GITHUB_werstak\InfluencerMarketing_APP\frontend\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="D:\DISK_F\PROJECTS-test+\GITHUB_werstak\InfluencerMarketing_APP\backend\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -46,7 +52,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1690520043023</updated>
-      <workItem from="1690520044015" duration="11115000" />
+      <workItem from="1690520044015" duration="15478000" />
+      <workItem from="1690556639887" duration="928000" />
     </task>
     <servers />
   </component>
@@ -63,5 +70,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

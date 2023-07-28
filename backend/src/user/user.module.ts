@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
-// import { UserService } from './user.service';
 import { CustomHttpModule } from "../custom-http/custom-http.module";
 
 @Module({

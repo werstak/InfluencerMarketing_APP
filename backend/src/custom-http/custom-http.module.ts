@@ -10,7 +10,6 @@ import { AxiosHeaders } from "axios";
             imports: [ConfigModule],
             useFactory: async (configService: ConfigService) => ({
                 baseURL: "https://imai.co/api",
-                // baseURL: "https://www.google.com",
                 headers: new AxiosHeaders({
                     "Authkey": configService.get("AUTH_KEY")
                 })

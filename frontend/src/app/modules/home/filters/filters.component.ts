@@ -21,11 +21,7 @@ import { UsersInterface } from '../../../interfaces/users.Interface';
   styleUrls: ['./filters.component.scss']
 })
 export class FiltersComponent implements OnInit, OnDestroy {
-  stateCtrl = new FormControl('');
-  filteredStates: any;
-
   private readonly unsubscribe$: Subject<void> = new Subject();
-
 
   typeList = TYPES_LIST;
   platformsList = PLATFORM_LIST;
@@ -39,7 +35,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
   filterForm: FormGroup = new FormGroup({});
   searchControl: FormControl = new FormControl();
 
-  // unsubFormFields: Subscription;
 
   searchValue = '';
   formValue!: FiltersInterface;
@@ -50,7 +45,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
 
   users: any;
   public users$ = new BehaviorSubject<UsersInterface[]>([]);
-  // public user$ = new BehaviorSubject<any[]>([]);
 
   selectedUser!: UsersInterface;
 
@@ -81,7 +75,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
 
   private getFormValue(): void {
     this.formValue = this.filterForm.value;
-    console.log('getFormValue()', this.formValue);
   }
 
   private getChangesSearchControl(): void {
@@ -104,7 +97,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
       .subscribe(resp => {
         this.users = resp;
         this.users$.next(resp.data);
-        console.log('getAllUsers()', this.users.data)
       });
   }
 
@@ -119,7 +111,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
       .subscribe(resp => {
         this.postsSelectedUser = resp;
         this.usersService.postsSelectedUser$.next(this.postsSelectedUser);
-        // console.log('postsSelectedUser', this.postsSelectedUser)
       });
 
 
@@ -128,7 +119,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
       .subscribe(resp => {
         this.contactsSelectedUser = resp;
         this.usersService.contactUser$.next(this.contactsSelectedUser);
-        // console.log('contactsSelectedUser', this.contactsSelectedUser)
       });
   }
 
