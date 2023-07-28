@@ -103,7 +103,6 @@
     position: absolute;
     top: 25px;
     right: 25px;
-    z-index: 1000;
     color: #fafafaf0;
     height: 30px;
     width: 30px;
@@ -125,7 +124,6 @@
     transform: translate(-50%, 0);
 
     .mat-icon {
-      z-index: 2000;
       color: #fafafaf0;
       height: 30px;
       width: 30px;

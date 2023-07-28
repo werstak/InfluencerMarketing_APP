@@ -1,6 +1,7 @@
 // import { Module } from '@nestjs/common';
 // import { AppController } from './app.controller';
 // import { AppService } from './app.service';
+//
 
 
 import { Module } from '@nestjs/common';
@@ -8,7 +9,7 @@ import { UserModule } from './user/user.module';
 import { ConfigModule } from "@nestjs/config";
 import { configSchema } from "./config/config.schema";
 import { CustomHttpModule } from './custom-http/custom-http.module';
-
+import { FeedModule } from "./feed/feed.module";
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { CustomHttpModule } from './custom-http/custom-http.module';
     }),
     CustomHttpModule,
     UserModule,
+    FeedModule,
   ],
   providers: [],
 })
