@@ -13,6 +13,7 @@ export class UserProfileComponent implements OnInit {
   posts: any;
   contacts: any;
   user: any;
+  imageLoading: boolean = false;
 
   constructor(
     public usersService: UsersService
@@ -23,6 +24,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.getCurrentUser();
     this.getPosts();
+    this.getLoadImg();
     this.getContacts();
   }
 
@@ -32,9 +34,23 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  private getLoadImg() {
+    this.usersService.imageLoading$.subscribe((data) => {
+      this.imageLoading = data;
+      console.log('this.imageLoading', this.imageLoading);
+    });
+  }
+
   private getPosts() {
     this.usersService.postsSelectedUser$.subscribe((data) => {
       this.posts = data;
+      console.log('this.posts', this.posts)
+      if (this.posts.items) {
+        this.imageLoading = false;
+        this.usersService.imageLoading$.next(false);
+      } else {
+        return;
+      }
     });
   }
 
@@ -44,4 +60,6 @@ export class UserProfileComponent implements OnInit {
       this.contacts = data.user_profile.contacts;
     });
   }
+
+
 }

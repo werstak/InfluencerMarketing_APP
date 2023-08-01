@@ -15,7 +15,18 @@ export class FeedService {
             params
         })
             .pipe(
-                map(res => res?.data),
+                map(res => {
+                    const items = res.data.items?.map((item) => {
+                        const origin_url = item.display_url.split('/').slice(0, 3).join('/');
+                        return {
+                            ...item,
+                            display_url: 'http://localhost:3000/proxy-image/' + item.display_url
+                        }
+                    })
+                    return {
+                        items: items
+                    }
+                })
             )
     }
 }

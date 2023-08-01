@@ -103,6 +103,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   getSelectedUser(user: UsersInterface): void {
     this.selectedUser = user;
     this.usersService.selectedUser$.next(this.selectedUser);
+    this.usersService.imageLoading$.next(true);
 
     let url = this.selectedUser.user_id;
 

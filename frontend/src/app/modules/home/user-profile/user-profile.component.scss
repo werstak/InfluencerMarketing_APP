@@ -75,6 +75,7 @@
 }
 
 .posts {
+  position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -159,4 +160,13 @@
     min-width: 100px;
   }
 
+
+
+}
+
+
+.image-spinner {
+  position: absolute;
+  left: 50%;
+  top: 40px;
 }

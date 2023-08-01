@@ -15,6 +15,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { PipesModule } from '../../pipes/pipes.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 const routes: Routes = [
@@ -46,6 +47,7 @@ const routes: Routes = [
     MatDialogModule,
     MatAutocompleteModule,
     MatSlideToggleModule,
+    MatProgressSpinnerModule
   ]
 })
 export class HomeModule { }

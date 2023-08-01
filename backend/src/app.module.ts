@@ -4,6 +4,7 @@ import { ConfigModule } from "@nestjs/config";
 import { configSchema } from "./config/config.schema";
 import { CustomHttpModule } from './custom-http/custom-http.module';
 import { FeedModule } from "./feed/feed.module";
+import { ContactModule } from "./contact/contact.module";
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { FeedModule } from "./feed/feed.module";
     CustomHttpModule,
     UserModule,
     FeedModule,
+    ContactModule,
   ],
   providers: [],
 })

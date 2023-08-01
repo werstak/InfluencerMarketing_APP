@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { map } from "rxjs";
-import { FindUsersDto } from "./dto/find-users.dto";
-import { HttpService } from "@nestjs/axios";
+import { map } from 'rxjs';
+import { FindUsersDto } from './dto/find-users.dto';
+import { HttpService } from '@nestjs/axios';
 
 @Injectable()
 export class UserService {
@@ -10,7 +10,7 @@ export class UserService {
     ) {
     }
 
-    findUsers (params: FindUsersDto) {
+    findUsers(params: FindUsersDto) {
         return this.httpService.get('dict/users', {
             params
         })

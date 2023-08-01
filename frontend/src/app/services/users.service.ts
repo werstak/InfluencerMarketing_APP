@@ -17,6 +17,8 @@ export class UsersService {
   public postsSelectedUser$ = new BehaviorSubject<any[]>([]);
   public selectedUser$ = new BehaviorSubject<any>({});
   public contactUser$ = new BehaviorSubject<any>({});
+  public imageLoading$ = new BehaviorSubject<boolean>(false);
+
 
 
   getAllUsers(q: any, limit: number, type: string, platform: string): Observable<any> {
